@@ -1,0 +1,20 @@
+package com.example.tesprojek.service;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class ApiMain {
+    public Retrofit retrofit;
+
+    public MovieRepository getApiMovie(){
+        String BASE_URL = "https://api.themoviedb.org/";
+        if(retrofit == null){
+            retrofit = new Retrofit
+                    .Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit.create(MovieRepository.class);
+    }
+}
